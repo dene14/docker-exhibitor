@@ -9,6 +9,12 @@ DEFAULT_LOG_DIR="/opt/zookeeper/transactions"
 DEFAULT_ZK_ENSEMBLE_SIZE=0
 S3_SECURITY=""
 HTTP_PROXY=""
+
+# Allow to obtain programmatically HOSTNAME (for e.g. in AWS ECS)
+if [[ -n $HOSTNAME_COMMAND ]]; then
+  HOSTNAME=$(eval $HOSTNAME_COMMAND)
+fi
+
 : ${HOSTNAME:?$MISSING_VAR_MESSAGE}
 : ${AWS_REGION:=$DEFAULT_AWS_REGION}
 : ${ZK_DATA_DIR:=$DEFAULT_DATA_DIR}
